@@ -13,7 +13,7 @@ public class Person : MonoBehaviour
     public int salary;
     public int sex;
     public int healthPercentage;
-    public int happinessPercentage;
+    public float happinessPercentage;
     public bool isOwningHome;
     House ownedHouse;
     public List<string> healthNotifications;

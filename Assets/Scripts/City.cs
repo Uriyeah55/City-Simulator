@@ -53,6 +53,7 @@ public class City : MonoBehaviour
             Debug.Log("Has " + citizen.bankAccount + " euros in the bank");
         }
         printHappinessNews();
+        Debug.Log("average HAPPINESS: " + calculateAverageHappiness());
     }
 
     // Update is called once per frame
@@ -67,4 +68,18 @@ public class City : MonoBehaviour
             NotifText.text += "\n" + notificationCity;
         }
     }
+float calculateAverageHappiness()
+{
+    if (citizensList.Count == 0) return 0f; // Avoid division by zero
+
+    float totalHappiness = 0f;
+
+    foreach (Person citizen in citizensList)
+    {
+        totalHappiness += citizen.happinessPercentage;
+    }
+
+    return totalHappiness / citizensList.Count;
+}
+
 }
