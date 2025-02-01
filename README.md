@@ -21,5 +21,6 @@ The long term plan:
 - Leave the city if happiness is low (real life can be enough dark sometimes to want to replicate s*icide, to be honest) 🕙
 - Become famous in the city 🕙
 - Have elections 🕙
+- Graphs Statistics to track happiness and health
 
 
