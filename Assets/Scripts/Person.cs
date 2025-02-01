@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Person : MonoBehaviour
+[System.Serializable]
+
+public class Person : ScriptableObject
 {
     public string name;
     public bool isDead;
