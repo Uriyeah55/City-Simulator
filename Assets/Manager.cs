@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
             NotifText.text = "dpfign";
 
         currentCity=GetComponent<City>();
-        printHappinessNews();
+       // printHappinessNews();
     }
 
     // Update is called once per frame
@@ -24,6 +24,7 @@ public class Manager : MonoBehaviour
     {
         
     }
+    /*
     void printHappinessNews(){
         Debug.Log("city has " + currentCity.happinessNotif.Count + " news");
         foreach(string notificationCity in currentCity.happinessNotif)
@@ -31,4 +32,5 @@ public class Manager : MonoBehaviour
             NotifText.text += "\n" + notificationCity;
         }
     }
+    */
 }

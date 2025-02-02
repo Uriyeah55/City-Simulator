@@ -5,43 +5,57 @@ using TMPro;
 
 public class City : MonoBehaviour
 {
-    public TMP_Text NotifText;
-    public Button generateButton; 
     public PopulationManager populationManager;
-    public List<Person> citizensList => populationManager.citizensList;
+    public Transform citizenListParent; // UI panel for citizen buttons
+    public GameObject citizenButtonPrefab; // Button template prefab
+    public TMP_Text citizenInfoText; // UI text to display citizen info
 
-    
-    public List<string> happinessNotif = new List<string>();
+    private List<GameObject> citizenButtons = new List<GameObject>();
 
-    void Start()
+  void Start()
+{
+    /*
+    if (populationManager != null && populationManager.citizensList.Count > 0)
     {
-      
+        CreateCitizenButtons();
     }
-    void Update(){
-        Debug.Log("CITY HAS " + citizensList.Count + " citixns");
-    }
-
-        //UpdateNotifications();
-
-    void UpdateNotifications()
+    else
     {
-        happinessNotif.Clear();
-        NotifText.text = "";
+        Debug.LogWarning("Population not yet generated.");
+    }
+    */
+}
+
+
+    public void CreateCitizenButtons()
+    {
+        Debug.Log("Total citizens: " + populationManager.citizensList.Count);
+
+        // Clear old buttons
+        foreach (var button in citizenButtons)
+        {
+            Destroy(button);
+        }
+        citizenButtons.Clear();
 
         foreach (Person citizen in populationManager.citizensList)
         {
-            if (citizen.hasGoodDay())
-            {
-                happinessNotif.Add("Citizen " + citizen.name + " has had a good day!");
-            }
-            happinessNotif.Add("Citizen " + citizen.name + " current happiness % is " + citizen.happinessPercentage);
-        }
+            GameObject buttonObj = Instantiate(citizenButtonPrefab, citizenListParent);
+            TMP_Text buttonText = buttonObj.GetComponentInChildren<TMP_Text>();
+            buttonText.text = citizen.name; // Display the name on button
 
-        foreach (string notification in happinessNotif)
-        {
-            NotifText.text += "\n" + notification;
-        }
+            Button button = buttonObj.GetComponent<Button>();
+            button.onClick.AddListener(() => ShowCitizenInfo(citizen));
 
-        Debug.Log("Average Happiness: " + populationManager.CalculateAverageHappiness());
+            citizenButtons.Add(buttonObj);
+        }
+    }
+
+    public void ShowCitizenInfo(Person citizen)
+    {
+        citizenInfoText.text = $"Name: {citizen.name}\n" +
+                               $"Age: {citizen.age}\n" +
+                               $"Happiness: {citizen.happinessPercentage}%\n" +
+                               $"Bank Account: ${citizen.bankAccount}";
     }
 }

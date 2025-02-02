@@ -32,15 +32,15 @@ public class PopulationManager : MonoBehaviour
 
 public void OnGenerateButtonClicked()
 {
-    Debug.Log("Button clicked!");
     int citizenCount = ValidateCitizenInput(inputField.text);
-    Debug.Log("haurien de crearse " + citizenCount + " ciutadans");
 
     if (citizenCount > 0)
     {
         hideInputAndButton();
-        Debug.Log("Valid number: " + citizenCount);
         GeneratePopulation(citizenCount);
+
+              // Ensure City updates the UI list
+        FindObjectOfType<City>().CreateCitizenButtons();
     }
     else
     {
