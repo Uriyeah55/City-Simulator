@@ -8,24 +8,20 @@ public class City : MonoBehaviour
     public TMP_Text NotifText;
     public Button generateButton; 
     public PopulationManager populationManager;
-    public List<Person> citizensList { get; private set; }
+    public List<Person> citizensList => populationManager.citizensList;
 
     
     public List<string> happinessNotif = new List<string>();
 
     void Start()
     {
-        if (generateButton != null)
-        {
-            generateButton.onClick.AddListener(() => GeneratePopulation(10));
-        }
+      
+    }
+    void Update(){
+        Debug.Log("CITY HAS " + citizensList.Count + " citixns");
     }
 
-    public void GeneratePopulation(int count)
-    {
-        populationManager.GeneratePopulation(count);
-        UpdateNotifications();
-    }
+        //UpdateNotifications();
 
     void UpdateNotifications()
     {

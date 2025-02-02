@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -8,6 +9,7 @@ public class PopulationManager : MonoBehaviour
     public List<Person> citizensList { get; private set; }
     private PersonCreator creator;
      public TMP_InputField inputField; 
+     public Button generateBtn;
 
     void Awake()
     {
@@ -36,6 +38,7 @@ public void OnGenerateButtonClicked()
 
     if (citizenCount > 0)
     {
+        hideInputAndButton();
         Debug.Log("Valid number: " + citizenCount);
         GeneratePopulation(citizenCount);
     }
@@ -66,5 +69,10 @@ public void OnGenerateButtonClicked()
         }
 
         return totalHappiness / citizensList.Count;
+    }
+    public void hideInputAndButton()
+    {
+        generateBtn.gameObject.SetActive(false);
+        inputField.gameObject.SetActive(false);
     }
 }
