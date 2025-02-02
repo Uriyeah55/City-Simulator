@@ -9,6 +9,8 @@ public class PopulationManager : MonoBehaviour
     public List<Person> citizensList { get; private set; }
     private PersonCreator creator;
      public TMP_InputField inputField; 
+     public GameObject manager;
+
      public Button generateBtn;
 
     void Awake()
@@ -41,6 +43,9 @@ public void OnGenerateButtonClicked()
 
               // Ensure City updates the UI list
         FindObjectOfType<City>().CreateCitizenButtons();
+        float actualHappinessAverage=manager.GetComponent<HappinessCalculator>().CalculateAverageHappiness(citizensList);
+
+        manager.GetComponent<HappinessUI>().UpdateHappiness(actualHappinessAverage);
     }
     else
     {
@@ -58,18 +63,7 @@ public void OnGenerateButtonClicked()
         return -1; // Invalid input
     }
 
-    public float CalculateAverageHappiness()
-    {
-        if (citizensList.Count == 0) return 0f;
-
-        float totalHappiness = 0f;
-        foreach (Person citizen in citizensList)
-        {
-            totalHappiness += citizen.happinessPercentage;
-        }
-
-        return totalHappiness / citizensList.Count;
-    }
+ 
     public void hideInputAndButton()
     {
         generateBtn.gameObject.SetActive(false);
