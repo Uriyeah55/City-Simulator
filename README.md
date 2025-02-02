@@ -10,8 +10,10 @@ The long term plan of the project is that they can simulate, more or less, a lif
 What works now:
 - Desired number of citizens generated with a single click ✔️
 - Assignation of simple, testing values (ex random names, age, sex or bank account money) ✔️
+- Detailed info can be displayed for each citizen ✔️
 
 The short term plan:
+- Sort citizens by name, age, sex or happiness 🕙
 - Having an associated house to pay 🕙
 - Have random silly events, like being murdered to a raccoon 🕙
 
@@ -21,6 +23,6 @@ The long term plan:
 - Leave the city if happiness is low (real life can be enough dark sometimes to want to replicate s*icide, to be honest) 🕙
 - Become famous in the city 🕙
 - Have elections 🕙
-- Graphs Statistics to track happiness and health
+- Graphs Statistics to track happiness and health 🕙
 
 
