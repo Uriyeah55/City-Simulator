@@ -69,4 +69,9 @@ public void OnGenerateButtonClicked()
         generateBtn.gameObject.SetActive(false);
         inputField.gameObject.SetActive(false);
     }
+        public void SortCitizensByName()
+    {
+        citizensList.Sort((a, b) => a.name.CompareTo(b.name)); // Sort alphabetically
+        OnGenerateButtonClicked();
+    }
 }

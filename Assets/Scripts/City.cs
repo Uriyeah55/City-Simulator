@@ -2,60 +2,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 public class City : MonoBehaviour
 {
-    public PopulationManager populationManager;
-    public Transform citizenListParent; // UI panel for citizen buttons
-    public GameObject citizenButtonPrefab; // Button template prefab
-    public TMP_Text citizenInfoText; // UI text to display citizen info
+    public Transform buttonContainer; // Parent object for buttons
+    public GameObject citizenButtonPrefab; // Prefab for citizen buttons
 
-    private List<GameObject> citizenButtons = new List<GameObject>();
-
-  void Start()
-{
-    /*
-    if (populationManager != null && populationManager.citizensList.Count > 0)
+    public void CreateCitizenButtons(List<Person> sortedCitizens = null)
     {
-        CreateCitizenButtons();
-    }
-    else
-    {
-        Debug.LogWarning("Population not yet generated.");
-    }
-    */
-}
+        // If no sorted list is provided, use the default one
+        List<Person> citizensToShow = sortedCitizens ?? FindObjectOfType<PopulationManager>().citizensList;
 
-
-    public void CreateCitizenButtons()
-    {
-        Debug.Log("Total citizens: " + populationManager.citizensList.Count);
-
-        // Clear old buttons
-        foreach (var button in citizenButtons)
+        // Remove existing buttons before creating new ones
+        foreach (Transform child in buttonContainer)
         {
-            Destroy(button);
+            Destroy(child.gameObject);
         }
-        citizenButtons.Clear();
 
-        foreach (Person citizen in populationManager.citizensList)
+        // Create new buttons based on sorted list
+        foreach (Person citizen in citizensToShow)
         {
-            GameObject buttonObj = Instantiate(citizenButtonPrefab, citizenListParent);
-            TMP_Text buttonText = buttonObj.GetComponentInChildren<TMP_Text>();
-            buttonText.text = citizen.name; // Display the name on button
-
-            Button button = buttonObj.GetComponent<Button>();
-            button.onClick.AddListener(() => ShowCitizenInfo(citizen));
-
-            citizenButtons.Add(buttonObj);
+            GameObject newButton = Instantiate(citizenButtonPrefab, buttonContainer);
+            newButton.GetComponentInChildren<TMPro.TMP_Text>().text = citizen.name;
+            newButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ShowCitizenInfo(citizen));
         }
     }
 
-    public void ShowCitizenInfo(Person citizen)
+    void ShowCitizenInfo(Person citizen)
     {
-        citizenInfoText.text = $"Name: {citizen.name}\n" +
-                               $"Age: {citizen.age}\n" +
-                               $"Happiness: {citizen.happinessPercentage}%\n" +
-                               $"Bank Account: ${citizen.bankAccount}";
+        Debug.Log($"Citizen: {citizen.name}, Age: {citizen.age}, Happiness: {citizen.happinessPercentage}%");
     }
 }
