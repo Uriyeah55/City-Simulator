@@ -29,13 +29,7 @@ void Awake()
      public GameObject manager;
 
      public Button generateBtn;
-/*
-    void Awake()
-    {
-        creator = GetComponent<PersonCreator>();
-        citizensList = new List<Person>();
-    }
-    */
+
 
     public void GeneratePopulation(int count)
     {
