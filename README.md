@@ -14,12 +14,11 @@ What works now:
 - People can be sorted by name or age ✔️
 - Graph display of the average happiness in the city ✔️
 
-  What is being cooked right now:
+What is being cooked right now:
   - Sort citizens sex or happiness 🕙
   - Automated generated tweets from everybody above 18 🕙
 
 The short term plan:
-
 - Having an associated house to pay 🕙
 - Have random silly events, like being murdered to a raccoon 🕙
 
