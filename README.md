@@ -15,7 +15,7 @@ What works now:
 - Graph display of the average happiness in the city ✔️
 
 What is being cooked right now:
-  - Sort citizens sex or happiness 🕙
+  - Sort citizens by sex or happiness 🕙
   - Automated generated tweets from everybody above 18 🕙
 
 The short term plan:
