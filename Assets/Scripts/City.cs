@@ -7,25 +7,59 @@ public class City : MonoBehaviour
     public Transform buttonContainer; // Parent object for buttons
     public GameObject citizenButtonPrefab; // Prefab for citizen buttons
 
-    public void CreateCitizenButtons(List<Person> sortedCitizens = null)
+    
+public void CreateCitizenButtons(List<Person> sortedCitizens = null)
+{
+    if (buttonContainer == null)
     {
-        // If no sorted list is provided, use the default one
-        List<Person> citizensToShow = sortedCitizens ?? FindObjectOfType<PopulationManager>().citizensList;
+        Debug.LogError("ButtonContainer is not assigned in City!");
+        return;
+    }
+    
+    if (citizenButtonPrefab == null)
+    {
+        Debug.LogError("CitizenButtonPrefab is not assigned in City!");
+        return;
+    }
 
-        // Remove existing buttons before creating new ones
-        foreach (Transform child in buttonContainer)
+    // If no sorted list is provided, use the default one
+    List<Person> citizensToShow = sortedCitizens ?? FindObjectOfType<PopulationManager>().citizensList;
+
+    // Remove existing buttons before creating new ones
+    foreach (Transform child in buttonContainer)
+    {
+        Destroy(child.gameObject);
+    }
+
+Debug.Log($"Creating {citizensToShow.Count} citizen buttons.");
+
+    // Create new buttons based on sorted list
+    foreach (Person citizen in citizensToShow)
+    {
+        GameObject newButton = Instantiate(citizenButtonPrefab, buttonContainer);
+        TMP_Text textComponent = newButton.GetComponentInChildren<TMP_Text>();
+
+        if (textComponent != null)
         {
-            Destroy(child.gameObject);
+            textComponent.text = citizen.name;
+        }
+        else
+        {
+            Debug.LogError("TMP_Text component is missing on the button prefab!");
         }
 
-        // Create new buttons based on sorted list
-        foreach (Person citizen in citizensToShow)
+        Button buttonComponent = newButton.GetComponent<Button>();
+        if (buttonComponent != null)
         {
-            GameObject newButton = Instantiate(citizenButtonPrefab, buttonContainer);
-            newButton.GetComponentInChildren<TMPro.TMP_Text>().text = citizen.name;
-            newButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ShowCitizenInfo(citizen));
+            buttonComponent.onClick.AddListener(() => ShowCitizenInfo(citizen));
+        }
+        else
+        {
+            Debug.LogError("Button component is missing on the button prefab!");
         }
     }
+}
+
 
     void ShowCitizenInfo(Person citizen)
     {

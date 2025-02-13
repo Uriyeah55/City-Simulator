@@ -6,18 +6,36 @@ using TMPro;
 
 public class PopulationManager : MonoBehaviour
 {
+
+    public City city; // Store reference to City
+
+void Awake()
+{
+    creator = GetComponent<PersonCreator>();
+    citizensList = new List<Person>();
+    city = FindObjectOfType<City>(); // Cache reference
+
+    if (city == null)
+    {
+        Debug.LogError("City script not found in the scene! Make sure it's assigned.");
+    }
+}
+
+
+
     public List<Person> citizensList { get; private set; }
     private PersonCreator creator;
      public TMP_InputField inputField; 
      public GameObject manager;
 
      public Button generateBtn;
-
+/*
     void Awake()
     {
         creator = GetComponent<PersonCreator>();
         citizensList = new List<Person>();
     }
+    */
 
     public void GeneratePopulation(int count)
     {
@@ -34,6 +52,16 @@ public class PopulationManager : MonoBehaviour
 
 public void OnGenerateButtonClicked()
 {
+    if (city != null)
+{
+    Debug.Log("Calling CreateCitizenButtons after generating citizens");
+    city.CreateCitizenButtons();
+}
+else
+{
+    Debug.LogError("City reference is null in PopulationManager!");
+}
+
     int citizenCount = ValidateCitizenInput(inputField.text);
 
     if (citizenCount > 0)
@@ -41,8 +69,17 @@ public void OnGenerateButtonClicked()
         hideInputAndButton();
         GeneratePopulation(citizenCount);
 
-              // Ensure City updates the UI list
-        FindObjectOfType<City>().CreateCitizenButtons();
+    City city = FindObjectOfType<City>();
+if (city != null)
+{
+    Debug.Log("Calling CreateCitizenButtons after generating citizens");
+    city.CreateCitizenButtons();
+}
+else
+{
+    Debug.LogError("City script not found in the scene!");
+}
+
         float actualHappinessAverage=manager.GetComponent<HappinessCalculator>().CalculateAverageHappiness(citizensList);
 
         manager.GetComponent<HappinessUI>().UpdateHappiness(actualHappinessAverage);

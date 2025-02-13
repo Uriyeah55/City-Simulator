@@ -462,7 +462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00003311402, y: 0}
+  m_AnchoredPosition: {x: 0.0005495841, y: 0}
   m_SizeDelta: {x: -13.1813, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &353388642
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 516054492}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999923
+  m_Size: 0.99926
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1783,7 +1783,6 @@ GameObject:
   - component: {fileID: 1233047202}
   - component: {fileID: 1233047201}
   - component: {fileID: 1233047200}
-  - component: {fileID: 1233047199}
   - component: {fileID: 1233047203}
   m_Layer: 5
   m_Name: GenerateCitizensButton
@@ -1812,21 +1811,6 @@ RectTransform:
   m_AnchoredPosition: {x: -217, y: 76}
   m_SizeDelta: {x: 247.7102, y: 57.044}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1233047199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233047197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6c596ad56c2334fb18a5603453d44f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 887371889}
-  manager: {fileID: 1677177814}
-  generateBtn: {fileID: 1233047200}
 --- !u!114 &1233047200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,7 +1855,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1233047199}
+      - m_Target: {fileID: 1677177820}
         m_TargetAssemblyTypeName: PopulationManager, Assembly-CSharp
         m_MethodName: OnGenerateButtonClicked
         m_Mode: 1
@@ -2593,6 +2577,7 @@ GameObject:
   - component: {fileID: 1677177815}
   - component: {fileID: 1677177818}
   - component: {fileID: 1677177819}
+  - component: {fileID: 1677177820}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2667,6 +2652,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7629afc735e7bec4a902db861471edf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1677177820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677177814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6c596ad56c2334fb18a5603453d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  city: {fileID: 0}
+  inputField: {fileID: 887371889}
+  manager: {fileID: 1677177814}
+  generateBtn: {fileID: 1233047200}
 --- !u!1 &1793038118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,8 +2847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 449.1283, y: 4.73}
-  m_SizeDelta: {x: 898.2664, y: 891.5003}
+  m_AnchoredPosition: {x: 448.57, y: -0.4286}
+  m_SizeDelta: {x: 779.97, y: 901.8174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845181747
 MonoBehaviour:
@@ -3070,7 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad875aa88101a644a5c25bbf5d07321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  populationManager: {fileID: 1233047199}
+  populationManager: {fileID: 1677177820}
   city: {fileID: 1677177816}
 --- !u!1 &2053731256
 GameObject:

@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sortCitizensBy : MonoBehaviour
+public class SortCitizensBy : MonoBehaviour
 {
     public PopulationManager populationManager;
     public City city; // Reference to City to recreate buttons
 
     public void SortCitizensByName()
     {
-        if (populationManager == null || city == null) return;
+        if (populationManager == null || city == null)
+        {
+            Debug.LogError("PopulationManager or City is not assigned!");
+            return;
+        }
 
-        // Create a sorted copy of the list (does NOT modify original list)
-        List<Person> sortedCitizens = new List<Person>(populationManager.citizensList);
-        sortedCitizens.Sort((a, b) => a.name.CompareTo(b.name));
+        if (populationManager.citizensList.Count == 0)
+        {
+            Debug.LogWarning("No citizens to sort!");
+            return;
+        }
 
-        // Re-create buttons based on sorted list
-        city.CreateCitizenButtons(sortedCitizens);
+        // Sort alphabetically
+        populationManager.citizensList.Sort((a, b) => a.name.CompareTo(b.name));
+
+        // Update the UI
+        city.CreateCitizenButtons(populationManager.citizensList);
     }
 }
